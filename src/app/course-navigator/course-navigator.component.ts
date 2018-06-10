@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseNavigatorServiceClient} from "../services/course-navigator.service.client";
+import {CourseNavigatorServiceClient} from '../services/course-navigator.service.client';
 
 @Component({
   selector: 'app-course-navigator',
