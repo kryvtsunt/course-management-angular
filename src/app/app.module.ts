@@ -2,10 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {FormsModule} from '@angular/forms';
-import {CourseNavigatorServiceClient} from './services/course-navigator.service.client';
-import { CourseNavigatorComponent } from './course-navigator/course-navigator.component';
 import { WhiteBoardComponent } from './white-board/white-board.component';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import {CourseServiceClient} from './services/course.service.client';
@@ -29,8 +26,6 @@ import {SectionListComponent} from './section-list/section-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HelloWorldComponent,
-    CourseNavigatorComponent,
     WhiteBoardComponent,
     CourseGridComponent,
     CourseViewerComponent,
@@ -49,9 +44,7 @@ import {SectionListComponent} from './section-list/section-list.component';
     HttpClientModule,
     routing
   ],
-  
   providers: [
-    CourseNavigatorServiceClient,
     CourseServiceClient,
     ModuleServiceClient,
     LessonServiceClient,
