@@ -22,6 +22,7 @@ import {TopicServiceClient} from './services/topic.service.client';
 import { HttpClientModule } from '@angular/common/http';
 import {SectionServiceClient} from './services/section.service.client';
 import {SectionListComponent} from './section-list/section-list.component';
+import {UserServiceClient} from "./services/user.service.client";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {SectionListComponent} from './section-list/section-list.component';
     LessonServiceClient,
     WidgetServiceClient,
     TopicServiceClient,
+    UserServiceClient,
     SectionServiceClient
   ],
   bootstrap: [AppComponent]

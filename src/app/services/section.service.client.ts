@@ -10,12 +10,27 @@ export class SectionServiceClient {
       .then(response => response.json());
   }
 
-  enrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+  enrollStudentInSection(courseId, sectionId) {
+    const url = 'http://localhost:4000/api/course/' + courseId + '/section/' + sectionId + '/enrollment';
     return fetch(url, {
       method: 'post',
       credentials: 'include'
     });
+  }
+
+  dropStudentInSection(sectionId) {
+    const url = 'http://localhost:4000/api/section/' + sectionId + '/drop';
+    return fetch(url, {
+      method: 'post',
+      credentials: 'include'
+    });
+  }
+
+  checkSectionEnrollment(courseId) {
+    return fetch('http://localhost:4000/api/course/' + courseId + '/enrollment/check', {
+      credentials: 'include'
+    })
+      .then(response => response.json());
   }
 
   findSectionsForCourse(courseId) {

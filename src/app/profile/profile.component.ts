@@ -15,9 +15,7 @@ export class ProfileComponent implements OnInit {
               private sectionService: SectionServiceClient,
               private router: Router) { }
 
-  user = {};
-  username;
-  password;
+  user: User;
   sections = [];
 
   update(user) {
@@ -36,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.service
       .profile()
       .then(user =>
-        this.username = user.username);
+        this.user = user);
 
     this.sectionService
       .findSectionsForStudent()

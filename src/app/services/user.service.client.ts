@@ -5,6 +5,14 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
+  checkStatus() {
+    return fetch('http://localhost:4000/api/status',
+      {
+        credentials: 'include', // include, same-origin, *omit
+      })
+      .then(response => response.json());
+  }
+
   login(username, password) {
     const credentials = {
       username: username,
