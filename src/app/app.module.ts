@@ -49,6 +49,7 @@ import {SectionListComponent} from './section-list/section-list.component';
     HttpClientModule,
     routing
   ],
+  
   providers: [
     CourseNavigatorServiceClient,
     CourseServiceClient,
