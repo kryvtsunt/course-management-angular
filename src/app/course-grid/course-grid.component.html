@@ -2,7 +2,9 @@
 <a routerLink="/login">Login</a>
 <a routerLink="/register">Register</a>
 </div>
-
+<div *ngIf="status" >
+<a routerLink="/profile">Register</a>
+</div>
 <h2> My Courses ({{myCourses.length}})</h2>
 <div class="row">
   <div *ngFor="let course of myCourses" class="col-sm-3">
@@ -27,7 +29,7 @@
         <a routerLink="/course/{{course.id}}"
            class="btn btn-primary">View</a>
         <a routerLink="/course/{{course.id}}/section"
-           class="btn btn-success">Enroll</a>
+           class="btn btn-info">Enrollment</a>
       </div>
     </div>
   </div>

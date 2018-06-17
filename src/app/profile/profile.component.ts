@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../models/user.model.client";
-import {UserServiceClient} from "../services/user.service.client";
-import {Router} from "@angular/router";
-import {SectionServiceClient} from "../services/section.service.client";
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user.model.client';
+import {UserServiceClient} from '../services/user.service.client';
+import {Router} from '@angular/router';
+import {SectionServiceClient} from '../services/section.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -11,31 +11,43 @@ import {SectionServiceClient} from "../services/section.service.client";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private service: UserServiceClient,
-              private sectionService: SectionServiceClient,
-              private router: Router) { }
+  constructor(private router: Router, private service: UserServiceClient,  private sectionService: SectionServiceClient, ) {
+  }
 
-  user: User;
+  user: User = new User();
+  edit: boolean;
   sections = [];
 
-  update(user) {
-    console.log(user);
+  toggleEdit(){
+    this.edit = !this.edit;
+  }
+
+  update(u: User) {
+    this.service.updateUser(u).then((resp) => {
+      console.log('resp ' + resp.firstName);
+      this.service
+        .profile()
+        .then(user => {
+          this.user = user;
+          console.log(user)
+        })
+    })
   }
 
   logout() {
-    this.service
-      .logout()
+    this.service.logout()
       .then(() =>
-        this.router.navigate(['login']));
-
+        this.router.navigate(['tk/home']));
   }
 
   ngOnInit() {
+    this.edit = false;
     this.service
       .profile()
-      .then(user =>
-        this.user = user);
-
+      .then(user => {
+        this.user = user;
+        console.log(user)
+      });
     this.sectionService
       .findSectionsForStudent()
       .then(sections => this.sections = sections );
