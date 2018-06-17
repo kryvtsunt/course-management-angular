@@ -22,6 +22,9 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TopicPillsComponent } from './topic-pills/topic-pills.component';
 import {TopicServiceClient} from './services/topic.service.client';
+import { HttpClientModule } from '@angular/common/http';
+import {SectionServiceClient} from './services/section.service.client';
+import {SectionListComponent} from './section-list/section-list.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +40,13 @@ import {TopicServiceClient} from './services/topic.service.client';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    TopicPillsComponent
+    TopicPillsComponent,
+    SectionListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     routing
   ],
   providers: [
@@ -50,7 +55,8 @@ import {TopicServiceClient} from './services/topic.service.client';
     ModuleServiceClient,
     LessonServiceClient,
     WidgetServiceClient,
-    TopicServiceClient
+    TopicServiceClient,
+    SectionServiceClient
   ],
   bootstrap: [AppComponent]
 })

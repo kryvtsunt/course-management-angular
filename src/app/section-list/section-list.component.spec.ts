@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HelloWorldComponent } from './hello-world.component';
+import { SectionListComponent } from './section-list.component';
 
-describe('HelloWorldComponent', () => {
-  let component: HelloWorldComponent;
-  let fixture: ComponentFixture<HelloWorldComponent>;
+describe('SectionListComponent', () => {
+  let component: SectionListComponent;
+  let fixture: ComponentFixture<SectionListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HelloWorldComponent ]
+      declarations: [ SectionListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HelloWorldComponent);
+    fixture = TestBed.createComponent(SectionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
