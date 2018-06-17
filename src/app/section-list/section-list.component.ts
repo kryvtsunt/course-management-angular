@@ -49,13 +49,17 @@ export class SectionListComponent implements OnInit {
     this.service
       .enrollStudentInSection(this.courseId, sectionId)
       .then(() => {
-        this.router.navigate(['profile']);
-      });
+        this.loadSections(this.courseId);
+      })
+      .then(() => this.checkEnrollment(this.courseId));
   }
 
   drop(sectionId){
     this.service
       .dropStudentInSection(sectionId)
+      .then(() => {
+        this.loadSections(this.courseId);
+      })
       .then(() => this.checkEnrollment(this.courseId));
   }
 
