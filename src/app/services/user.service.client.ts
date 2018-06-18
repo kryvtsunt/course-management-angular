@@ -56,6 +56,14 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
+  isAdmin(){
+    return fetch('http://localhost:4000/api/admin/status',
+      {
+        credentials: 'include', // include, same-origin, *omit
+      })
+      .then(response => response.json());
+  }
+
   createUser(username, password) {
     const user = {
       username: username,

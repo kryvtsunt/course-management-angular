@@ -37,6 +37,7 @@
   </div>
   <div style="margin-top: 10px">
   <button class="btn btn-block btn-danger" (click)="logout()">Logout</button>
-  <button class="btn btn-block btn-secondary" routerLink="">Home</button>
+  <button *ngIf="!admin" class="btn btn-block btn-secondary" routerLink="">Home</button>
+    <button *ngIf="admin" class="btn btn-block btn-secondary" routerLink="/admin">Administration</button>
   </div>
 </div>

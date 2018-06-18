@@ -1,23 +1,18 @@
 <div class="container-fluid">
-  <h1>Sections for course: {{courseId}}</h1>
-  <input [(ngModel)]="sectionName"
-         placeholder="Section Name"
-         class="form-control">
-  <input [(ngModel)]="seats"
-         placeholder="Seats available"
-         class="form-control">
-  <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
-    Add Section
-  </button>
-
+  <h1> All sections for the course : </h1>
+<div class="container-fluid">
   <ul class="list-group">
     <li *ngFor="let section of sections" class="list-group-item">
-      {{section.name}} {{section.seats}}
-      <button *ngIf="enrollment.section === 0" (click)="enroll(section._id)"
+      {{section.name}}
+      {{section.seats}}
+      <div *ngIf="section.seats <= 0" style="color: red" class="float-right"> Section is full</div>
+      <button *ngIf="status && enrollment.section === 0 && section.seats>0" (click)="enroll(section._id)"
               class="float-right btn btn-primary">Enroll</button>
-      <button *ngIf="enrollment.section === section._id" (click)="drop(section._id)"
+      <button *ngIf="status && enrollment.section === section._id" (click)="drop(section._id)"
               class="float-right btn btn-danger">Drop section</button>
     </li>
   </ul>
-
+  <a routerLink="">Home</a>
+  <a routerLink="/profile">Profile</a>
+</div>
 </div>

@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   edit: boolean;
+  admin = false;
   sections = [];
 
   toggleEdit(){
@@ -46,7 +47,10 @@ export class ProfileComponent implements OnInit {
       .profile()
       .then(user => {
         this.user = user;
-        console.log(user)
+        if (user.role === 'admin'){
+          this.admin = true;
+        }
+        console.log(user);
       });
     this.sectionService
       .findSectionsForStudent()
