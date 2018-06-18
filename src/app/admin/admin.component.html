@@ -1,3 +1,4 @@
+<br/>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -6,20 +7,20 @@
           <h4>Course List</h4>
           <div *ngFor="let course of courses">
             <ul class="list-group">
-              <button class="list-group-item list-group-item-action" (click)="this.findAllSectionsForCourse(course.id)">
+              <button class="list-group-item list-group-item-action" (click)="this.findAllSectionsForCourse(course.id, course.title)">
                 {{course.title}}
               </button>
             </ul>
           </div>
         </div>
         <div class="col-md-9">
-          <h4>List of Sections for course</h4>
+          <h4>List of Sections for {{courseTitle}}</h4>
           <table class="table table-responsive table-bordred table-striped">
             <thead>
             <th>Section name</th>
             <th>Number of Seats</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
             </thead>
             <tbody>
             <tr>
@@ -30,13 +31,18 @@
                          placeholder="Number of Seats"
                          class="form-control"/></td>
               <td>
-                <p data-placement="top" data-toggle="tooltip" title="Edit">
-                  <button class="btn btn-success btn-xs fa fa-plus"></button>
+                <p *ngIf="!editMode" data-placement="top" data-toggle="tooltip" title="Add">
+                  <button (click)="createSection()"
+                    class="btn btn-success btn-xs fa fa-plus"></button>
+                </p>
+                <p *ngIf="editMode" data-placement="top" data-toggle="tooltip" title="Add">
+                  <button (click)="updateSection()"
+                          class="btn btn-success btn-xs fa fa-upload"></button>
                 </p>
               </td>
               <td>
-                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                  <button
+                <p data-placement="top" data-toggle="tooltip" title="Clean">
+                  <button (click)="cleanData()"
                     class="btn btn-danger btn-xs fa fa-times"></button>
                 </p>
               </td>
@@ -46,12 +52,14 @@
               <td>{{section.seats}}</td>
               <td>
                 <p data-placement="top" data-toggle="tooltip" title="Edit">
-                  <button class="btn btn-primary btn-xs fa fa-edit"></button>
+                  <button (click)="editSection(section.name, section.seats, section._id)"
+                    class="btn btn-primary btn-xs fa fa-edit"></button>
                 </p>
               </td>
               <td>
                 <p data-placement="top" data-toggle="tooltip" title="Delete">
                   <button
+                    (click)="deleteSection(section._id)"
                     class="btn btn-danger btn-xs fa fa-trash"></button>
                 </p>
               </td>
