@@ -1,17 +1,26 @@
-<div class="container-fluid">
-  <h1>Login</h1>
-
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <button (click)="login(username, password)"
-          class="btn btn-primary btn-block">
-    Login
-  </button>
-
-  <a routerLink="/register">Register</a>
-  <a routerLink="/home">Home</a>
+<div class="form">
+  <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
+  <div class="errors">
+    <div *ngIf="noUsernameError">
+      <p> Username field is empty </p>
+    </div>
+    <div *ngIf="noPasswordError" >
+      <p> Password field is empty </p>
+    </div>
+    <div *ngIf="credentialsError">
+      <p> Wrong Credentials </p>
+    </div>
+  </div>
+  <div>
+  <div>
+    <input type="text" [(ngModel)]="username"
+           placeholder="Username"
+           class="form-control"/>
+    <input type="password" [(ngModel)]="password"
+           placeholder="Password"
+           class="form-control"/>
+    <button (click)="login()">Login</button>
+    <p class="message">Not registered? <a routerLink="/register">Sign up</a></p>
+  </div>
 </div>
+

@@ -5,6 +5,16 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
+  findUserByUsername(username) {
+    return fetch('http://localhost:4000/api/user/username/' + username)
+      .then(response => response.json());
+  }
+
+  // findUserByCredentials(username, password) {
+  //   return fetch('http://localhost:4000/api/user/username/' + username + '/password/' + password)
+  //     .then(response => response.json());
+  // }
+
   checkStatus() {
     return fetch('http://localhost:4000/api/status',
       {
@@ -23,7 +33,7 @@ export class UserServiceClient {
       }
     }).then(response =>
       response.json()
-    )
+    );
   }
 
   login(username, password) {
@@ -38,7 +48,8 @@ export class UserServiceClient {
       headers: {
         'content-type': 'application/json'
       }
-    });
+    }).then(response =>
+      response.json();
   }
 
   logout() {

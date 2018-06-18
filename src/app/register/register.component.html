@@ -1,21 +1,60 @@
-<div class="container-fluid">
-  <h1>Register</h1>
+<!--<br/>-->
+<!--<div class="container text-center">-->
+  <!--<h1>Register</h1>-->
+  <!--<div class="container">-->
 
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <input [(ngModel)]="password2"
-         placeholder="verify password"
-         class="form-control"/>
-  <button (click)="register(username, password, password2)"
-          class="btn btn-primary btn-block">
+  <!--</div>-->
+  <!--<br/>-->
+
+
+  <!--<button (click)="register(username, password, password2)"-->
+          <!--class="btn btn-primary btn-block container">-->
+    <!--Register-->
+  <!--</button>-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-6 ">-->
+    <!--<button class="btn btn-block" routerLink="/home">Home</button>-->
+    <!--</div>-->
+    <!--<div class="col-md-6">-->
+    <!--<button class="btn btn-block" routerLink="/login">Login</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="form">
+  <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
+  <div class="errors">
+    <div *ngIf="noUsernameError">
+      <p> Username field is empty </p>
+    </div>
+    <div *ngIf="noPasswordError" >
+      <p> Password field is empty </p>
+    </div>
+    <div *ngIf="noPassword2Error">
+      <p> Verification password field is empty </p>
+    </div>
+    <div *ngIf="usernameError">
+      <p> Username is already taken </p>
+    </div>
+    <div *ngIf="passwordError">
+      <p> Passwords do not match </p>
+    </div>
+  </div>
+  <div>
+    <input type="text" [(ngModel)]="username"
+    placeholder="Username"
+    class="form-control"/>
+    <input type="password"  [(ngModel)]="password"
+    placeholder="Password"
+    class="form-control"/>
+    <input type="password" [(ngModel)]="password2"
+    placeholder="Verify password"
+    class="form-control"/>
+    <button (click)="register()"
+    class="btn">
     Register
-  </button>
-
-  <a routerLink="/login">Login</a>
-  <a routerLink="/home">Home</a>
-
+    </button>
+    <p class="message">Already registered? <a routerLink="/login">Sign In</a></p>
+  </div>
 </div>

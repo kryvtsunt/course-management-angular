@@ -1,6 +1,6 @@
 <div class="container container-fluid">
   <h1>Profile</h1>
-  <button class="btn btn-info btn-block" (click)="toggleEdit()" style="margin-bottom: 10px"> Edit</button>
+  <button class="btn btn-info float-left" (click)="toggleEdit()" style="margin-bottom: 10px"> Edit</button>
 
   <div *ngIf="edit">
     <input [(ngModel)]="user.username"
@@ -36,8 +36,8 @@
     <h4> {{user.email}} </h4>
   </div>
   <div style="margin-top: 10px">
-  <button class="btn btn-block btn-danger" (click)="logout()">Logout</button>
-  <button *ngIf="!admin" class="btn btn-block btn-secondary" routerLink="">Home</button>
+    <button *ngIf="!admin" class="btn btn-block btn-secondary" routerLink="">Home</button>
     <button *ngIf="admin" class="btn btn-block btn-secondary" routerLink="/admin">Administration</button>
+    <button class="btn btn-block btn-danger" (click)="logout()">Logout</button>
   </div>
 </div>
