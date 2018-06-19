@@ -1,18 +1,40 @@
-<div class="container-fluid">
-  <h1> All sections for the course : </h1>
-<div class="container-fluid">
-  <ul class="list-group">
-    <li *ngFor="let section of sections" class="list-group-item">
-      {{section.name}}
-      {{section.seats}}
-      <div *ngIf="section.seats <= 0" style="color: red" class="float-right"> Section is full</div>
-      <button *ngIf="status && enrollment.section === 0 && section.seats>0" (click)="enroll(section._id)"
-              class="float-right btn btn-primary">Enroll</button>
-      <button *ngIf="status && enrollment.section === section._id" (click)="drop(section._id)"
-              class="float-right btn btn-danger">Drop section</button>
-    </li>
-  </ul>
-  <a routerLink="">Home</a>
-  <a routerLink="/profile">Profile</a>
-</div>
-</div>
+<!--<div class="container-fluid">-->
+  <h1> All sections for the course {{course.title}} </h1>
+
+    <table class="table table-light table-hover">
+      <thead class="thead-dark">
+      <th>Section name</th>
+      <th>Number of Seats</th>
+      <th>Action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let section of sections">
+        <td> {{section.name}}</td>
+        <td> {{section.seats}}</td>
+        <td>
+          <div *ngIf="section.seats <= 0" style="color: red"> Section is full</div>
+          <button *ngIf="status && enrollment.section === 0 && section.seats>0" (click)="enroll(section._id)"
+                  class="btn btn-primary">Enroll
+          </button>
+          <button *ngIf="status && enrollment.section === section._id" (click)="drop(section._id)"
+                  class="btn btn-danger">Drop section
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!--<ul class="list-group">-->
+      <!--<li *ngFor="let section of sections" class="list-group-item list-group-item-action">-->
+        <!--{{section.name}}-->
+        <!--{{section.seats}}-->
+        <!--<div *ngIf="section.seats <= 0" style="color: red" class="float-right"> Section is full</div>-->
+        <!--<button *ngIf="status && enrollment.section === 0 && section.seats>0" (click)="enroll(section._id)"-->
+                <!--class="float-right btn btn-primary">Enroll-->
+        <!--</button>-->
+        <!--<button *ngIf="status && enrollment.section === section._id" (click)="drop(section._id)"-->
+                <!--class="float-right btn btn-danger">Drop section-->
+        <!--</button>-->
+      <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->

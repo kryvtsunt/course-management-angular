@@ -1,31 +1,40 @@
 <div *ngIf="status">
-  <h2> My Courses ({{myCourses.length}})</h2>
+  <h2> My Courses:</h2>
   <div class="row">
-    <div *ngFor="let course of myCourses" class="col-sm-3">
+    <div *ngFor="let course of myCourses" class="col-md-4 col-lg-3">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{course.title}}</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <img class="card-img-top"
+               src="http://i0.wp.com/lukeangel.co/wp-content/uploads/2017/11/courseCover-AgileProductOwnership-From-Beginner-to-ProfessionalimagescourseCover.jpg?fit=750%2C422">
+          <p class="card-text">Description will be here soon</p>
+          <p class="card-text"><strong>Status:</strong> {{course.status}}</p>
           <a routerLink="/course/{{course.id}}"
-             class="btn btn-primary">View</a>
+             class="btn btn-primary">View Content</a>
         </div>
       </div>
     </div>
   </div>
+<br/>
 </div>
-
-<h2> All Courses ({{courses.length}})</h2>
+<h2> All Courses:</h2>
 <div class="row">
-  <div *ngFor="let course of courses" class="col-sm-3">
+  <div *ngFor="let course of courses" class="col-md-4 col-lg-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{course.title}}</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/course/{{course.id}}"
-           class="btn btn-primary">View</a>
+        <img class="card-img-top"
+             src="https://www.virtual-college.co.uk/-/media/images/dev/online-courses-cover.ashx">
+        <p class="card-text">Description will be here soon</p>
+        <p class="card-text"><strong>Status:</strong>  {{course.status}}</p>
+        <a *ngIf="course.status !== 'private'" routerLink="/course/{{course.id}}"
+           class="btn btn-primary btn-block">View Content</a>
         <a routerLink="/course/{{course.id}}/section"
-           class="btn btn-info">Enrollment</a>
+           class="btn btn-info btn-block">Enrollment</a>
       </div>
     </div>
   </div>
 </div>
+<br/>
+<br/>
+<br/>

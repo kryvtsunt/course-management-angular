@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SectionServiceClient} from "../services/section.service.client";
 import {UserServiceClient} from "../services/user.service.client";
+import {CourseServiceClient} from "../services/course.service.client";
+import {Course} from "../models/coruse.model.client";
 
 @Component({
   selector: 'app-section-list',
@@ -10,7 +12,8 @@ import {UserServiceClient} from "../services/user.service.client";
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private userService: UserServiceClient,
+  constructor(private courseService: CourseServiceClient,
+              private userService: UserServiceClient,
               private service: SectionServiceClient,
               private router: Router,
               private route: ActivatedRoute) {
@@ -20,15 +23,18 @@ export class SectionListComponent implements OnInit {
   sectionName = '';
   seats = '';
   courseId = '';
+  course: Course;
   sections = [];
   enrollment;
-  status:boolean;
+  status: boolean;
+
   loadSections(courseId) {
     this.courseId = courseId;
-    this
-      .service
+    this.service
       .findSectionsForCourse(courseId)
-      .then(sections => this.sections = sections)
+      .then(sections => this.sections = sections);
+    this.courseService.findCourseById(courseId)
+      .then((course) => this.course = course);
   }
 
   checkEnrollment(courseId){
@@ -45,12 +51,14 @@ export class SectionListComponent implements OnInit {
     // alert(section._id);
     this.service
       .enrollStudentInSection(this.courseId, sectionId)
+      .then(() => this.loadSections(this.courseId))
       .then(() => this.checkEnrollment(this.courseId));
   }
 
   drop(sectionId){
     this.service
       .dropStudentInSection(sectionId)
+      .then(() => this.loadSections(this.courseId))
       .then(() => this.checkEnrollment(this.courseId));
   }
 

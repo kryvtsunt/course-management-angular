@@ -21,8 +21,12 @@ export class WidgetListComponent implements OnInit {
     this.loadWidgets(params.topicId);
   }
   loadWidgets(topicId) {
-    this.service.findWidgetsForLesson(topicId)
-      .then(widgets => this.widgets = widgets);
+    console.log(topicId);
+    this.service.findWidgetsForTopic(topicId)
+      .then(widgets => {
+        console.log(widgets);
+        this.widgets = widgets
+      });
   }
 
   ngOnInit() {
