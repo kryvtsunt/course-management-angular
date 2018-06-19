@@ -67,7 +67,7 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
-  isAdmin(){
+  isAdmin() {
     return fetch('http://localhost:4000/api/admin/status',
       {
         credentials: 'include', // include, same-origin, *omit

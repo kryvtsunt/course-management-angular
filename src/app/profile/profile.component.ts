@@ -3,6 +3,8 @@ import {User} from '../models/user.model.client';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
+import {CourseServiceClient} from "../services/course.service.client";
+import {Course} from "../models/coruse.model.client";
 
 @Component({
   selector: 'app-profile',
@@ -11,15 +13,16 @@ import {SectionServiceClient} from '../services/section.service.client';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private router: Router, private service: UserServiceClient,  private sectionService: SectionServiceClient, ) {
+  constructor(private router: Router, private service: UserServiceClient, private sectionService: SectionServiceClient, private courseService: CourseServiceClient) {
   }
 
   user: User = new User();
   edit: boolean;
   admin = false;
   sections = [];
+  myCourses: Course[] = [];
 
-  toggleEdit(){
+  toggleEdit() {
     this.edit = !this.edit;
   }
 
@@ -47,14 +50,18 @@ export class ProfileComponent implements OnInit {
       .profile()
       .then(user => {
         this.user = user;
-        if (user.role === 'admin'){
+        if (user.role === 'admin') {
           this.admin = true;
         }
-        console.log(user);
       });
-    this.sectionService
-      .findSectionsForStudent()
-      .then(sections => this.sections = sections );
+    this.sectionService.findSectionsForStudent()
+      .then(async sections => {
+        for (const en of sections) {
+          this.sections.push(en.section);
+          this.myCourses[this.myCourses.length] = await this.courseService.findCourseById(en.section.courseId);
+        }
+        console.log(this.sections);
+      });
   }
 
 }

@@ -24,8 +24,12 @@ export class AdminComponent implements OnInit {
   sectionId = '';
   editMode = false;
   sections = [];
+  admin: boolean;
+  index;
 
   createSection() {
+    if (this.sectionName === ''){ this.sectionName = (this.courseTitle + ' Section' + this.index); }
+    if (this.seats === ''){ this.seats = '42'; }
     if (this.courseId !== '') {
       this
         .sectionService
@@ -72,10 +76,19 @@ export class AdminComponent implements OnInit {
     this.courseId = courseId;
     this.courseTitle = courseTitle
     this.sectionService.findSectionsForCourse(courseId)
-      .then(sections => this.sections = sections);
+      .then(sections => {this.sections = sections; this.index = sections.length + 1});
   }
 
   ngOnInit() {
+    this.userService
+      .profile()
+      .then(user => {
+        if (user.role === 'admin') {
+          this.admin = true;
+        } else {
+          this.admin = false;
+        }
+      });
     this.courseService.findAllCourses()
       .then(courses => this.courses = courses);
 

@@ -19,7 +19,11 @@ export class NavbarComponent implements OnInit {
   checkStatus() {
     this.userService.checkStatus().then(response => this.loggedIn = response);
   }
-
+  logout() {
+    this.userService.logout()
+      .then(() =>
+        this.router.navigate(['tk/home']));
+  }
   ngOnInit() {
     this.router.events.subscribe(() => {
       this.checkStatus();

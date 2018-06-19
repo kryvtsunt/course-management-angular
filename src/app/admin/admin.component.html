@@ -1,7 +1,6 @@
-<br/>
-<div class="container">
 
-  <a routerLink="/profile">Profile</a>
+<div *ngIf="admin" class="container">
+  <br/>
   <div class="row">
     <div class="col-md-3">
       <h4>Course List</h4>
@@ -69,6 +68,12 @@
       </table>
     </div>
   </div>
+</div>
+
+<div *ngIf="!admin" class="container-fluid text-center" style="color:white; background-color:red">
+  <br/>
+  <h4> ERROR: You are not authorized to be here !</h4>
+  <br/>
 </div>
 
 

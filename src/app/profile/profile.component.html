@@ -1,14 +1,15 @@
 <div class="container container-fluid">
   <h1>Profile</h1>
   <button class="btn btn-info float-left" (click)="toggleEdit()" style="margin-bottom: 10px"> Edit</button>
-
+  <br/>
   <div *ngIf="edit">
     <input [(ngModel)]="user.username"
            placeholder="username"
            class="form-control"/>
     <input [(ngModel)]="user.password"
            placeholder="password"
-           class="form-control"/>
+           class="form-control"
+           type="password"/>
     <input [(ngModel)]="user.firstName"
            placeholder="first name"
            class="form-control"/>
@@ -18,26 +19,62 @@
     <input [(ngModel)]="user.email"
            placeholder="email"
            class="form-control"/>
+    <input [(ngModel)]="user.phone"
+           placeholder="Phone"
+           class="form-control"/>
+    <input [(ngModel)]="user.address"
+           placeholder="Address"
+           class="form-control"/>
     <input [(ngModel)]="user.img_path"
            placeholder="image"
            class="form-control"/>
     <button (click)="update(user)"
             class="btn btn-primary btn-block "
             style="margin-top: 10px">
+
+
       Update
     </button>
   </div>
 
   <div *ngIf="!edit" class="text-center container container-fluid">
     <img src="{{user.img_path}}" class="rounded mx-auto d-block" style="border: 2px solid white;"/>
+    <br/>
     <h3> {{user.username}}</h3>
     <h4> {{user.firstName}}</h4>
     <h4> {{user.lastName}} </h4>
     <h4> {{user.email}} </h4>
+    <h4> {{user.phone}} </h4>
+    <h4> {{user.address}} </h4>
   </div>
   <div style="margin-top: 10px">
     <button *ngIf="!admin" class="btn btn-block btn-secondary" routerLink="">Home</button>
     <button *ngIf="admin" class="btn btn-block btn-secondary" routerLink="/admin">Administration</button>
     <button class="btn btn-block btn-danger" (click)="logout()">Logout</button>
   </div>
+
+  <div *ngIf="!edit">
+    <br/>
+    <div class="row">
+      <div class="col-6">
+      <h3> Course</h3>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let course of myCourses" routerLink="/course/{{course.id}}" class="list-group-item list-group-item-action">
+          <h5>{{course.title}} </h5>
+
+        </li>
+      </ul>
+      </div>
+      <div class="col-6">
+      <h3> Section</h3>
+      <ul class="list-group list-group-flush col-6">
+        <li *ngFor="let section of sections" class="list-group-item list-group-item-light">
+          <h5>{{section.name}}</h5>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
 </div>
+
+
