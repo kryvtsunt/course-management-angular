@@ -25,7 +25,8 @@ export class WidgetListComponent implements OnInit {
     this.service.findWidgetsForTopic(topicId)
       .then(widgets => {
         console.log(widgets);
-        this.widgets = widgets
+        this.widgets = widgets;
+        this.widgets.sort(function(a, b){return a.widgetOrder - b.widgetOrder; });
       });
   }
 

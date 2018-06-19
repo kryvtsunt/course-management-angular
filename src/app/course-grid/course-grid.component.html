@@ -8,7 +8,8 @@
           <img class="card-img-top"
                src="http://i0.wp.com/lukeangel.co/wp-content/uploads/2017/11/courseCover-AgileProductOwnership-From-Beginner-to-ProfessionalimagescourseCover.jpg?fit=750%2C422">
           <p class="card-text">Description will be here soon</p>
-          <p class="card-text"><strong>Status:</strong> {{course.status}}</p>
+          <p *ngIf="course.status !== null" class="card-text"><strong>Status:</strong> {{course.status}}</p>
+          <p *ngIf="course.status === null"class="card-text"><strong>Status:</strong> public</p>
           <a routerLink="/course/{{course.id}}"
              class="btn btn-primary">View Content</a>
         </div>
@@ -26,7 +27,8 @@
         <img class="card-img-top"
              src="https://www.virtual-college.co.uk/-/media/images/dev/online-courses-cover.ashx">
         <p class="card-text">Description will be here soon</p>
-        <p class="card-text"><strong>Status:</strong>  {{course.status}}</p>
+        <p *ngIf="course.status !== null" class="card-text"><strong>Status:</strong> {{course.status}}</p>
+        <p *ngIf="course.status === null"class="card-text"><strong>Status:</strong> public</p>
         <a *ngIf="course.status !== 'private'" routerLink="/course/{{course.id}}"
            class="btn btn-primary btn-block">View Content</a>
         <a routerLink="/course/{{course.id}}/section"
