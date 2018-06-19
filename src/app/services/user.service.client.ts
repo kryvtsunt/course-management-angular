@@ -1,12 +1,14 @@
-export class UserServiceClient {
+const HOST = 'https://tk-course-management-nodejs.herokuapp.com/';
+// const HOST = 'http://localhost:4000/';
 
+export class UserServiceClient {
   findUserById(userId) {
-    return fetch('http://localhost:4000/api/user/' + userId)
+    return fetch(HOST + 'api/user/' + userId)
       .then(response => response.json());
   }
 
   findUserByUsername(username) {
-    return fetch('http://localhost:4000/api/user/username/' + username)
+    return fetch(HOST + 'api/user/username/' + username)
       .then(response => response.json());
   }
 
@@ -16,7 +18,7 @@ export class UserServiceClient {
   // }
 
   checkStatus() {
-    return fetch('http://localhost:4000/api/status',
+    return fetch(HOST + 'api/status',
       {
         credentials: 'include', // include, same-origin, *omit
       })
@@ -24,7 +26,7 @@ export class UserServiceClient {
   }
 
   updateUser(user) {
-    return fetch('http://localhost:4000/api/user/update', {
+    return fetch(HOST + 'api/user/update', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'put',
@@ -41,7 +43,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/login', {
+    return fetch(HOST + 'api/login', {
       method: 'post',
       body: JSON.stringify(credentials),
       credentials: 'include',
@@ -49,18 +51,18 @@ export class UserServiceClient {
         'content-type': 'application/json'
       }
     }).then(response =>
-      response.json();
+      response.json());
   }
 
   logout() {
-    return fetch('http://localhost:4000/api/logout', {
+    return fetch(HOST + 'api/logout', {
       method: 'post',
       credentials: 'include'
     });
   }
 
   profile() {
-    return fetch('http://localhost:4000/api/profile',
+    return fetch(HOST + 'api/profile',
       {
         credentials: 'include', // include, same-origin, *omit
       })
@@ -68,7 +70,7 @@ export class UserServiceClient {
   }
 
   isAdmin() {
-    return fetch('http://localhost:4000/api/admin/status',
+    return fetch(HOST + 'api/admin/status',
       {
         credentials: 'include', // include, same-origin, *omit
       })
@@ -81,7 +83,7 @@ export class UserServiceClient {
       password: password,
       img_path: path
     };
-    return fetch('http://localhost:4000/api/user', {
+    return fetch(HOST + 'api/user', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'post',

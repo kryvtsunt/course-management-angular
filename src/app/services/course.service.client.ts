@@ -1,11 +1,16 @@
+const HOST = 'https://tk-course-management.herokuapp.com/';
+// const HOST = 'http://localhost:4000/';
+
+const COURSE_URL = HOST + 'api/course';
+
 export class CourseServiceClient {
-  COURSE_URL = 'http://localhost:8080/api/course';
+
   findAllCourses() {
-    return fetch(this.COURSE_URL)
+    return fetch(COURSE_URL)
       .then(response => response.json());
   }
   findCourseById(courseId) {
-    return fetch(this.COURSE_URL + '/' + courseId)
+    return fetch(COURSE_URL + '/' + courseId)
       .then(response => response.json());
   }
 }

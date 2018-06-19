@@ -1,9 +1,14 @@
+const HOST = 'https://tk-course-management-nodejs.herokuapp.com/';
+// const HOST = 'http://localhost:4000/';
+
+const SECTION_URL = HOST + 'api/course/COURSEID/section';
+
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:4000/api/course/COURSEID/section';
+
 
   findSectionsForStudent() {
-    const url = 'http://localhost:4000/api/student/section';
+    const url = HOST + 'api/student/section';
     return fetch(url, {
       credentials: 'include'
     })
@@ -11,7 +16,7 @@ export class SectionServiceClient {
   }
 
   enrollStudentInSection(courseId, sectionId) {
-    const url = 'http://localhost:4000/api/course/' + courseId + '/section/' + sectionId + '/enrollment';
+    const url = HOST + 'api/course/' + courseId + '/section/' + sectionId + '/enrollment';
     return fetch(url, {
       method: 'post',
       credentials: 'include'
@@ -19,7 +24,7 @@ export class SectionServiceClient {
   }
 
   dropStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/drop';
+    const url = HOST + 'api/section/' + sectionId + '/drop';
     return fetch(url, {
       method: 'delete',
       credentials: 'include'
@@ -27,20 +32,20 @@ export class SectionServiceClient {
   }
 
   checkSectionEnrollment(courseId) {
-    return fetch('http://localhost:4000/api/course/' + courseId + '/enrollment/check', {
+    return fetch(HOST + 'api/course/' + courseId + '/enrollment/check', {
       credentials: 'include'
     })
       .then(response => response.json());
   }
 
   findSectionsForCourse(courseId) {
-    return fetch(this.SECTION_URL.replace('COURSEID', courseId))
+    return fetch(SECTION_URL.replace('COURSEID', courseId))
       .then(response => response.json());
   }
 
   createSection(courseId, name, seats) {
     const section = {courseId, name, seats};
-    return fetch(this.SECTION_URL.replace('COURSEID', courseId), {
+    return fetch(SECTION_URL.replace('COURSEID', courseId), {
       method: 'post',
       body: JSON.stringify(section),
       credentials: 'include',
@@ -51,7 +56,7 @@ export class SectionServiceClient {
   }
 
   updateSection(sectionId, name, seats) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/update';
+    const url = HOST + 'api/section/' + sectionId + '/update';
     const section = {name: name, seats: seats};
     return fetch(url, {
       method: 'put',
@@ -63,7 +68,7 @@ export class SectionServiceClient {
   }
 
   deleteSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/delete';
+    const url = HOST + 'api/section/' + sectionId + '/delete';
     return fetch(url, {
       method: 'delete',
       headers: {
