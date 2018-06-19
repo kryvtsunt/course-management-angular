@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
   passwordError: boolean;
   noUsernameError: boolean;
   noPasswordError: boolean;
-  noPassword2Error: boolean
+  noPassword2Error: boolean;
+  img_path = 'https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100';
 
   resetErrors() {
     this.usernameError = false;
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
                 console.log(response);
                 if (response === null) {
                   this.service
-                    .createUser(this.username, this.password)
+                    .createUser(this.username, this.password, this.img_path)
                     .then(() => this.router.navigate(['profile']));
                 } else {
                   this.usernameError = true;

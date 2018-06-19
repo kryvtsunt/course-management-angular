@@ -75,10 +75,11 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
-  createUser(username, password) {
+  createUser(username, password, path) {
     const user = {
       username: username,
-      password: password
+      password: password,
+      img_path: path
     };
     return fetch('http://localhost:4000/api/user', {
       body: JSON.stringify(user),

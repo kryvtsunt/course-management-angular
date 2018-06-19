@@ -27,8 +27,8 @@ export class ProfileComponent implements OnInit {
   }
 
   update(u: User) {
+    if (u.img_path === ''){u.img_path= 'https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100' }
     this.service.updateUser(u).then((resp) => {
-      console.log('resp ' + resp.firstName);
       this.service
         .profile()
         .then(user => {
