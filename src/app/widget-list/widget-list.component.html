@@ -16,16 +16,32 @@
         {{widget.text}}
       </div>
     </div>
+    <div *ngSwitchCase="'List'">
+      <div [ngSwitch]="widget.listType">
+        <div *ngSwitchCase="'Ordered'">
+          <ol class="text-left">
+            <li class=""
+                *ngFor="let item of widget.text.split('\n')">
+              {{item}}
+            </li>
+          </ol>
+        </div>
+        <div *ngSwitchCase="'Unordered'">
+          <ul class="text-left">
+            <li class=""
+                *ngFor="let item of widget.text.split('\n')">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
     <div *ngSwitchCase="'Link'">
       <a href="{{widget.href}}">{{widget.text}}</a>
     </div>
-    <div *ngSwitchCase="'List'">
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let item of widget.text.split('\n')">
-          {{item}}
-        </li>
-      </ul>
+    <div *ngSwitchCase="'Image'">
+      <img src="{{widget.src}}" width="{{widget.width}}"/>
     </div>
 
     <div *ngSwitchCase="'Exam'">

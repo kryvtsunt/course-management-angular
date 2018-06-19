@@ -21,7 +21,7 @@ export class SectionServiceClient {
   dropStudentInSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/drop';
     return fetch(url, {
-      method: 'post',
+      method: 'delete',
       credentials: 'include'
     });
   }
@@ -54,7 +54,7 @@ export class SectionServiceClient {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/update';
     const section = {name: name, seats: seats};
     return fetch(url, {
-      method: 'post',
+      method: 'put',
       body: JSON.stringify(section),
       headers: {
         'content-type': 'application/json'
@@ -65,7 +65,7 @@ export class SectionServiceClient {
   deleteSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/delete';
     return fetch(url, {
-      method: 'post',
+      method: 'delete',
       headers: {
         'content-type': 'application/json'
       }

@@ -27,7 +27,7 @@ export class UserServiceClient {
     return fetch('http://localhost:4000/api/user/update', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
-      method: 'post',
+      method: 'put',
       headers: {
         'content-type': 'application/json'
       }
