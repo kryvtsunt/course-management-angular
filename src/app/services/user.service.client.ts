@@ -1,9 +1,17 @@
 const HOST = 'https://tk-course-management-nodejs.herokuapp.com/';
+
 // const HOST = 'http://localhost:4000/';
 
 export class UserServiceClient {
   findUserById(userId) {
     return fetch(HOST + 'api/user/' + userId)
+      .then(response => response.json());
+  }
+
+  deleteUser(userId) {
+    return fetch(HOST + 'api/user/' + userId + '/delete', {
+      method: 'delete'
+    })
       .then(response => response.json());
   }
 
